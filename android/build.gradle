@@ -2,13 +2,15 @@ group 'com.example.flutternativeimage'
 version '1.0-SNAPSHOT'
 
 buildscript {
+    ext.kotlin_version = '1.9.25'
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath "com.android.tools.build:gradle:8.6.1"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 
@@ -22,15 +24,20 @@ rootProject.allprojects {
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 28
-    namespace "com.example.flutternativeimage"
+    namespace 'com.example.flutternativeimage'
+    compileSdkVersion 34
 
     defaultConfig {
-        minSdkVersion 16
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdkVersion 24
+        targetSdkVersion 34
     }
-    lintOptions {
-        disable 'InvalidPackage'
-        abortOnError false
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
     }
 }
